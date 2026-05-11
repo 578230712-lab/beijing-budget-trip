@@ -1,0 +1,2005 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="北京穷游精华行程方案：特种兵、经典、深度。" />
+  <title>精华行程 | 1000元穷游北京</title>
+  <style>
+    :root {
+      --sky-blue: #4a90e2;
+      --mint-green: #5cb85c;
+      --text: #2c3e50;
+      --text-muted: #5a6c7d;
+      --bg: #fafcfd;
+      --white: #ffffff;
+      --placeholder-bg: #f0f2f4;
+      --placeholder-border: #c5ccd4;
+      --header-h: 3.5rem;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(74, 144, 226, 0.12);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header-h) + 0.75rem);
+    }
+
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    a {
+      color: var(--sky-blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* —— 固定顶栏 —— */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--header-h);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(74, 144, 226, 0.15);
+      box-shadow: 0 1px 0 rgba(92, 184, 92, 0.08);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      line-height: 1.2;
+    }
+
+    .logo-title {
+      font-weight: 800;
+      font-size: 1rem;
+      background: linear-gradient(135deg, var(--sky-blue), var(--mint-green));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .logo-tagline {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    .nav-toggle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 2.5rem;
+      height: 2.5rem;
+      padding: 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 8px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-toggle:focus-visible {
+      outline: 2px solid var(--sky-blue);
+      outline-offset: 2px;
+    }
+
+    .nav-toggle-bar {
+      display: block;
+      width: 1.35rem;
+      height: 2px;
+      margin: 0 auto;
+      background: var(--sky-blue);
+      border-radius: 1px;
+      transition: transform 0.25s ease, opacity 0.2s ease;
+    }
+
+    .site-header.is-open .nav-toggle-bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .site-header.is-open .nav-toggle-bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .site-header.is-open .nav-toggle-bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .main-nav {
+      position: fixed;
+      top: var(--header-h);
+      left: 0;
+      right: 0;
+      max-height: 0;
+      overflow: hidden;
+      background: var(--white);
+      border-bottom: 1px solid rgba(74, 144, 226, 0.12);
+      transition: max-height 0.35s ease;
+    }
+
+    .site-header.is-open .main-nav {
+      max-height: min(78vh, 520px);
+    }
+
+    .nav-list {
+      list-style: none;
+      margin: 0;
+      padding: 0.5rem 1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .nav-list a {
+      display: block;
+      padding: 0.65rem 0.75rem;
+      border-radius: 8px;
+      color: var(--text);
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .nav-list a:hover,
+    .nav-list a:focus-visible {
+      background: rgba(74, 144, 226, 0.1);
+      color: var(--sky-blue);
+      text-decoration: none;
+    }
+
+    .nav-list a[aria-current="page"] {
+      background: rgba(74, 144, 226, 0.18);
+      color: var(--sky-blue);
+      font-weight: 700;
+    }
+
+    .nav-backdrop {
+      display: none;
+    }
+
+    /* —— 导航：攻略下拉 —— */
+    .nav-item--dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown__toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.35rem;
+      width: 100%;
+      padding: 0.65rem 0.75rem;
+      border: none;
+      border-radius: 8px;
+      background: transparent;
+      font: inherit;
+      font-weight: 500;
+      color: var(--text);
+      cursor: pointer;
+      text-align: left;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-dropdown__toggle:focus-visible {
+      outline: 2px solid var(--sky-blue);
+      outline-offset: 2px;
+    }
+
+    .nav-dropdown__toggle:hover,
+    .nav-item--dropdown.is-open .nav-dropdown__toggle {
+      background: rgba(74, 144, 226, 0.1);
+      color: var(--sky-blue);
+    }
+
+    .nav-dropdown__caret {
+      font-size: 0.65rem;
+      opacity: 0.85;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-item--dropdown.is-open .nav-dropdown__caret {
+      transform: rotate(180deg);
+    }
+
+    .nav-dropdown__panel {
+      list-style: none;
+      margin: 0;
+      padding: 0.15rem 0 0.35rem;
+      display: none;
+    }
+
+    .nav-item--dropdown.is-open .nav-dropdown__panel {
+      display: block;
+    }
+
+    .nav-dropdown__panel a {
+      display: block;
+      padding: 0.5rem 0.75rem 0.5rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-dropdown__panel a:hover,
+    .nav-dropdown__panel a:focus-visible {
+      background: rgba(74, 144, 226, 0.1);
+      color: var(--sky-blue);
+      text-decoration: none;
+    }
+
+    .nav-dropdown__panel a[aria-current="page"] {
+      background: rgba(74, 144, 226, 0.18);
+      color: var(--sky-blue);
+      font-weight: 700;
+    }
+
+    @media (min-width: 768px) {
+      .nav-dropdown__toggle {
+        width: auto;
+        padding: 0.45rem 0.65rem;
+        font-size: 0.9rem;
+      }
+
+      .nav-dropdown__panel {
+        position: absolute;
+        top: calc(100% - 2px);
+        right: 0;
+        left: auto;
+        min-width: 15rem;
+        max-width: min(18rem, 92vw);
+        padding: 0.35rem 0.5rem;
+        background: var(--white);
+        border: 1px solid rgba(74, 144, 226, 0.12);
+        border-radius: var(--radius);
+        box-shadow: 0 4px 20px rgba(74, 144, 226, 0.1);
+        z-index: 1100;
+      }
+
+      .nav-dropdown__panel a {
+        padding: 0.5rem 0.65rem;
+        font-size: 0.85rem;
+        line-height: 1.35;
+        white-space: normal;
+      }
+    }
+
+    /* —— 子页紧凑标题区 —— */
+    .subpage-lead {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.35rem 1rem 1.5rem;
+      border-bottom: 1px solid rgba(74, 144, 226, 0.12);
+    }
+
+    .subpage-lead__title {
+      margin: 0 0 0.4rem;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .subpage-lead__sub {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .subpage-body {
+      min-height: 42vh;
+    }
+
+    /* 页脚上方紧凑呼应条（与子页顶部标题区文案一致） */
+    .subpage-endcap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1rem 1.35rem;
+      text-align: center;
+      border-top: 1px solid rgba(74, 144, 226, 0.12);
+      background: linear-gradient(180deg, transparent, rgba(74, 144, 226, 0.04));
+    }
+
+    .subpage-endcap__title {
+      margin: 0 0 0.3rem;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .subpage-endcap__sub {
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .itinerary-page-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.75rem;
+    }
+
+    .itinerary-page-version {
+      scroll-margin-top: calc(var(--header-h) + 0.75rem);
+    }
+
+    .itinerary-page-version + .itinerary-page-version {
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(74, 144, 226, 0.18);
+    }
+
+    .itinerary-page-cover {
+      margin: 0 0 1rem;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(74, 144, 226, 0.12);
+      box-shadow: var(--shadow);
+      background: var(--white);
+    }
+
+    .itinerary-page-cover img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 21 / 9;
+      object-fit: cover;
+    }
+
+    .itinerary-version-title {
+      margin: 0 0 0.35rem;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .itinerary-version-title::before {
+      content: "";
+      width: 4px;
+      height: 1.1em;
+      border-radius: 2px;
+      background: linear-gradient(180deg, var(--sky-blue), var(--mint-green));
+      flex-shrink: 0;
+    }
+
+    .itinerary-closing-stay {
+      margin-top: 1.35rem;
+      padding: 1rem 1.1rem 1.05rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(92, 184, 92, 0.35);
+      background: linear-gradient(180deg, rgba(92, 184, 92, 0.08), rgba(92, 184, 92, 0.04));
+      box-shadow: 0 2px 12px rgba(92, 184, 92, 0.1);
+    }
+
+    .itinerary-closing-stay__title {
+      margin: 0 0 0.55rem;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #2d6b3a;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .itinerary-closing-stay__text {
+      margin: 0;
+      font-size: 0.86rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    .itinerary-closing-stay__text p {
+      margin: 0 0 0.5rem;
+    }
+
+    .itinerary-closing-stay__text p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (min-width: 768px) {
+      .nav-toggle {
+        display: none;
+      }
+
+      .main-nav {
+        position: static;
+        max-height: none !important;
+        overflow: visible;
+        background: transparent;
+        border: none;
+      }
+
+      .nav-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.15rem;
+        padding: 0;
+      }
+
+      .nav-list a {
+        padding: 0.45rem 0.65rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* —— 主内容区 —— */
+    main {
+      padding-top: var(--header-h);
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1rem 2rem;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin: 0 0 1.25rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 4px;
+      height: 1.1em;
+      border-radius: 2px;
+      background: linear-gradient(180deg, var(--sky-blue), var(--mint-green));
+    }
+
+    /* —— Hero —— */
+    #hero {
+      min-height: calc(100vh - var(--header-h));
+      max-width: none;
+      margin: 0;
+      padding: 2.5rem 1rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(90deg, rgba(18, 55, 95, 0.22) 0%, rgba(22, 75, 42, 0.2) 100%),
+        linear-gradient(90deg, #4a90e2 0%, #6db4ea 38%, #86d49a 72%, #5cb85c 100%);
+    }
+
+    .hero-shell {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 2rem;
+    }
+
+    .hero-copy {
+      max-width: 38rem;
+    }
+
+    .hero-visual {
+      display: none;
+    }
+
+    .hero-visual img {
+      display: block;
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 22px;
+      border: 3px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+    }
+
+    @media (min-width: 768px) {
+      .hero-layout {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        text-align: left;
+        gap: 2.5rem;
+      }
+
+      .hero-copy {
+        flex: 1;
+        min-width: 0;
+        max-width: none;
+      }
+
+      .hero-visual {
+        display: block;
+        flex-shrink: 0;
+      }
+    }
+
+    #hero h1 {
+      margin: 0 0 0.85rem;
+      font-size: clamp(1.9rem, 6vw, 3rem);
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--white);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.22), 0 4px 28px rgba(0, 0, 0, 0.14);
+    }
+
+    #hero .hero-sub {
+      margin: 0 0 1.75rem;
+      font-size: clamp(1rem, 2.4vw, 1.125rem);
+      color: rgba(255, 255, 255, 0.96);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      line-height: 1.65;
+    }
+
+    .btn-hero-download {
+      display: inline-block;
+      padding: 0.8rem 1.85rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      background: linear-gradient(135deg, #6dc870 0%, var(--mint-green) 55%, #4a9e4f 100%);
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 8px 28px rgba(46, 125, 50, 0.45);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-hero-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(46, 125, 50, 0.5);
+    }
+
+    .btn-hero-download:active {
+      transform: translateY(0);
+    }
+
+    /* —— 占位通用 —— */
+    .placeholder {
+      background: var(--placeholder-bg);
+      border: 2px dashed var(--placeholder-border);
+      border-radius: var(--radius);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+      min-height: 4rem;
+    }
+
+    /* —— 行程卡片 —— */
+    .itinerary-cards {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 600px) {
+      .itinerary-cards {
+        grid-template-columns: repeat(3, 1fr);
+        align-items: stretch;
+      }
+    }
+
+    .itinerary-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.2rem 1.15rem;
+      box-shadow: 0 4px 20px rgba(74, 144, 226, 0.1);
+      border: 1px solid rgba(74, 144, 226, 0.12);
+      border-top: 4px solid var(--sky-blue);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .itinerary-card:nth-child(2) {
+      border-top-color: #6ba8e8;
+    }
+
+    .itinerary-card:nth-child(3) {
+      border-top-color: var(--mint-green);
+    }
+
+    .itinerary-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(74, 144, 226, 0.18);
+    }
+
+    .itinerary-card__title {
+      margin: 0 0 0.35rem;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .itinerary-card__sub {
+      margin: 0 0 0.85rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .itinerary-card__budget {
+      margin: 0 0 0.85rem;
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.5rem;
+    }
+
+    .itinerary-card__budget-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .itinerary-card__budget-num {
+      font-size: 1.38rem;
+      font-weight: 800;
+      color: #4a90e2;
+      letter-spacing: 0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .itinerary-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0 0 0.65rem;
+      list-style: none;
+      padding: 0;
+    }
+
+    .itinerary-card__tags li {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #2d6bb0;
+      background: rgba(74, 144, 226, 0.1);
+      padding: 0.28rem 0.55rem;
+      border-radius: 999px;
+      line-height: 1.2;
+    }
+
+    .itinerary-card__note {
+      margin: 0 0 1rem;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: #7a8794;
+    }
+
+    .itinerary-card__cta {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 0.65rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--sky-blue), #3a7bc8);
+      box-shadow: 0 4px 16px rgba(74, 144, 226, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .itinerary-card__cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+      text-decoration: none;
+      color: var(--white);
+    }
+
+    /* —— 行程详情（多方案锚点） —— */
+    .itinerary-detail-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .itinerary-detail-section {
+      scroll-margin-top: calc(var(--header-h) + 0.75rem);
+    }
+
+    .itinerary-detail-block {
+      scroll-margin-top: calc(var(--header-h) + 0.75rem);
+    }
+
+    .itinerary-detail-block h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .itinerary-detail-meta {
+      margin: 0 0 1rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* —— 行程时间轴（3天2夜详情） —— */
+    .itinerary-timeline {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid rgba(74, 144, 226, 0.12);
+      padding: 1.15rem 1rem 1.25rem;
+      box-shadow: var(--shadow);
+    }
+
+    .itinerary-day + .itinerary-day {
+      margin-top: 1.75rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid rgba(74, 144, 226, 0.22);
+    }
+
+    .itinerary-day__title {
+      margin: 0 0 1rem;
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: var(--text);
+      padding: 0.55rem 0.85rem;
+      background: linear-gradient(90deg, rgba(74, 144, 226, 0.12), rgba(92, 184, 92, 0.06));
+      border-left: 4px solid var(--sky-blue);
+      border-radius: 0 10px 10px 0;
+      line-height: 1.35;
+    }
+
+    .itinerary-day:first-child .itinerary-day__title {
+      margin-top: 0;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: minmax(3.25rem, 4.75rem) minmax(0, 1fr);
+      gap: 0 0.85rem;
+      align-items: start;
+    }
+
+    .timeline-item + .timeline-item {
+      margin-top: 0.15rem;
+    }
+
+    .timeline-item__time {
+      text-align: right;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--sky-blue);
+      padding-top: 0.2rem;
+      line-height: 1.3;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timeline-item__content {
+      position: relative;
+      border-left: 2px solid rgba(74, 144, 226, 0.28);
+      padding: 0 0 1.15rem 1rem;
+      margin-left: 0;
+    }
+
+    .itinerary-day .timeline-item:last-child .timeline-item__content {
+      padding-bottom: 0.35rem;
+    }
+
+    .timeline-item__content::before {
+      content: "";
+      position: absolute;
+      left: -6px;
+      top: 0.38rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--sky-blue);
+      box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.12);
+    }
+
+    .timeline-item__title {
+      margin: 0 0 0.35rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .timeline-item__desc {
+      margin: 0;
+      font-size: 0.86rem;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
+    .timeline-item--stay .timeline-item__time {
+      color: var(--mint-green);
+    }
+
+    .timeline-item--stay .timeline-item__content::before {
+      border-color: var(--mint-green);
+      box-shadow: 0 0 0 3px rgba(92, 184, 92, 0.15);
+    }
+
+    .itinerary-alert {
+      margin-top: 1.75rem;
+      padding: 1.1rem 1.15rem 1.15rem;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, #fffce8 0%, #fff4b8 55%, #ffe97a 100%);
+      border: 2px solid #e6b800;
+      box-shadow: 0 6px 22px rgba(230, 184, 0, 0.28);
+    }
+
+    .itinerary-alert__title {
+      margin: 0 0 0.65rem;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #7a5b00;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .itinerary-alert ul {
+      margin: 0;
+      padding-left: 1.15rem;
+      color: #4a3d12;
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    .itinerary-alert li + li {
+      margin-top: 0.35rem;
+    }
+
+    /* —— 预算计算器 —— */
+    .budget-sheet {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid rgba(74, 144, 226, 0.14);
+      padding: 1.2rem 1.15rem 1.35rem;
+      box-shadow: 0 4px 22px rgba(74, 144, 226, 0.12);
+    }
+
+    .budget-sheet__title {
+      margin: 0 0 0.85rem;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
+    .budget-sheet__intro {
+      margin: 0 0 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .budget-sheet__rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .budget-sheet__row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(7rem, 8.5rem);
+      gap: 0.5rem 0.75rem;
+      align-items: center;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px dashed rgba(74, 144, 226, 0.18);
+    }
+
+    .budget-sheet__row:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .budget-sheet__label {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .budget-sheet__field {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: rgba(74, 144, 226, 0.06);
+      border: 1px solid rgba(74, 144, 226, 0.2);
+      border-radius: 10px;
+      padding: 0.4rem 0.55rem;
+    }
+
+    .budget-sheet__field:focus-within {
+      border-color: var(--mint-green);
+      box-shadow: 0 0 0 2px rgba(92, 184, 92, 0.18);
+    }
+
+    .budget-sheet__currency {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--sky-blue);
+    }
+
+    .budget-sheet__input {
+      width: 100%;
+      min-width: 0;
+      border: none;
+      background: transparent;
+      font-size: 1rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--text);
+      text-align: right;
+      padding: 0.1rem 0;
+      outline: none;
+    }
+
+    .budget-sheet__input::-webkit-outer-spin-button,
+    .budget-sheet__input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .budget-sheet__input[type="number"] {
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+
+    .budget-sheet__btn {
+      width: 100%;
+      margin-top: 1.1rem;
+      padding: 0.85rem 1rem;
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--sky-blue), #3a7bc8);
+      box-shadow: 0 6px 20px rgba(74, 144, 226, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .budget-sheet__btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(74, 144, 226, 0.4);
+    }
+
+    .budget-sheet__btn:active {
+      transform: translateY(0);
+    }
+
+    .budget-sheet__output {
+      margin-top: 1.1rem;
+      text-align: center;
+    }
+
+    .budget-sheet__output.is-empty .budget-sheet__total,
+    .budget-sheet__output.is-empty .budget-sheet__verdict {
+      display: none;
+    }
+
+    .budget-sheet__total {
+      margin: 0 0 0.65rem;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .budget-sheet__verdict {
+      margin: 0;
+      font-size: clamp(1.15rem, 3.5vw, 1.38rem);
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .budget-sheet__verdict--ok {
+      color: #1e7a32;
+    }
+
+    .budget-sheet__verdict--over {
+      color: #c62828;
+    }
+
+    @media (max-width: 420px) {
+      .budget-sheet__row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .timeline-item {
+        grid-template-columns: 3.5rem minmax(0, 1fr);
+        gap: 0 0.5rem;
+      }
+
+      .timeline-item__time {
+        font-size: 0.75rem;
+      }
+    }
+
+    /* —— 文章区 —— */
+    .article-placeholder {
+      min-height: 200px;
+    }
+
+    /* —— 目的地网格：手机1列 / 平板2列 / 桌面4列 —— */
+    .dest-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 640px) {
+      .dest-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .dest-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .dest-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--radius);
+      border: 1px solid rgba(74, 144, 226, 0.12);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .dest-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 36px rgba(74, 144, 226, 0.16);
+    }
+
+    .dest-card__body {
+      padding: 1rem 1.1rem 1.1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .dest-card__title {
+      margin: 0;
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .dest-card__price {
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #4a90e2;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .dest-card__tag {
+      align-self: flex-start;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      line-height: 1.2;
+    }
+
+    .dest-card__desc {
+      margin: 0;
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
+    .dest-card--gugong {
+      background: linear-gradient(180deg, #fff7f4 0%, #fdeee8 100%);
+    }
+
+    .dest-card--gugong .dest-card__tag {
+      background: rgba(200, 80, 60, 0.2);
+      color: #8b2e1f;
+    }
+
+    .dest-card--yiheyuan {
+      background: linear-gradient(180deg, #f2fbf8 0%, #e3f5ef 100%);
+    }
+
+    .dest-card--yiheyuan .dest-card__tag {
+      background: rgba(46, 160, 130, 0.22);
+      color: #146b52;
+    }
+
+    .dest-card--changcheng {
+      background: linear-gradient(180deg, #f5f7f2 0%, #e9ede5 100%);
+    }
+
+    .dest-card--changcheng .dest-card__tag {
+      background: rgba(95, 115, 95, 0.22);
+      color: #2d4a30;
+    }
+
+    .dest-card--art798 {
+      background: linear-gradient(180deg, #f5f3f8 0%, #ebe4f2 100%);
+    }
+
+    .dest-card--art798 .dest-card__tag {
+      background: rgba(120, 95, 160, 0.2);
+      color: #4f3d6b;
+    }
+
+    .dest-card--shichahai {
+      background: linear-gradient(180deg, #f0f5fc 0%, #e2eaf8 100%);
+    }
+
+    .dest-card--shichahai .dest-card__tag {
+      background: rgba(70, 110, 190, 0.2);
+      color: #254f8f;
+    }
+
+    .dest-card--guobo {
+      background: linear-gradient(180deg, #f0fafb 0%, #e3f4f6 100%);
+    }
+
+    .dest-card--guobo .dest-card__tag {
+      background: rgba(30, 140, 160, 0.2);
+      color: #0d5c6b;
+    }
+
+    .dest-card--nanluo {
+      background: linear-gradient(180deg, #faf4f0 0%, #f3e8e2 100%);
+    }
+
+    .dest-card--nanluo .dest-card__tag {
+      background: rgba(190, 100, 75, 0.2);
+      color: #7a3825;
+    }
+
+    .dest-card--olympic {
+      background: linear-gradient(180deg, #f2f7fc 0%, #e3eef6 100%);
+    }
+
+    .dest-card--olympic .dest-card__tag {
+      background: rgba(55, 130, 200, 0.2);
+      color: #1a5a94;
+    }
+
+    /* —— 折叠面板 —— */
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .accordion-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(74, 144, 226, 0.18);
+      background: var(--white);
+      box-shadow: 0 2px 12px rgba(74, 144, 226, 0.06);
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      background: rgba(74, 144, 226, 0.06);
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .accordion-trigger:focus-visible {
+      outline: 2px solid var(--sky-blue);
+      outline-offset: -2px;
+    }
+
+    .accordion-icon {
+      flex-shrink: 0;
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      background: var(--mint-green);
+      color: var(--white);
+      font-size: 0.85rem;
+      line-height: 1.25rem;
+      text-align: center;
+      font-weight: 700;
+      transition: transform 0.25s ease;
+    }
+
+    .accordion-item.is-open .accordion-icon {
+      transform: rotate(45deg);
+    }
+
+    .accordion-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+
+    .accordion-panel-inner {
+      padding: 0 1rem 1rem;
+    }
+
+    .accordion-panel-inner .placeholder {
+      min-height: 72px;
+      margin-top: 0.5rem;
+    }
+
+    .tips-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding-top: 0.25rem;
+    }
+
+    .tips-detail__block {
+      margin: 0;
+      padding: 0.65rem 0.75rem;
+      border-radius: 10px;
+      background: rgba(74, 144, 226, 0.05);
+      border-left: 3px solid var(--sky-blue);
+    }
+
+    .tips-detail__block:nth-child(3n + 2) {
+      background: rgba(92, 184, 92, 0.07);
+      border-left-color: var(--mint-green);
+    }
+
+    .tips-detail__block:nth-child(3n) {
+      background: rgba(74, 144, 226, 0.06);
+      border-left-color: #6ba8e8;
+    }
+
+    .tips-detail__name {
+      margin: 0 0 0.4rem;
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
+    .tips-detail__text {
+      margin: 0;
+      font-size: 0.84rem;
+      line-height: 1.62;
+      color: var(--text-muted);
+    }
+
+    /* —— 实用信息 —— */
+    .practical-blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .practical-block {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid rgba(74, 144, 226, 0.14);
+      padding: 1rem 1.15rem 1.1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .practical-block__title {
+      margin: 0 0 0.7rem;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.35;
+      padding-bottom: 0.45rem;
+      border-bottom: 2px solid rgba(74, 144, 226, 0.15);
+    }
+
+    .practical-block--alert .practical-block__title {
+      border-bottom-color: rgba(232, 160, 32, 0.35);
+    }
+
+    .practical-block--contact .practical-block__title {
+      border-bottom-color: rgba(92, 184, 92, 0.28);
+    }
+
+    .practical-list {
+      margin: 0;
+      padding-left: 1.2rem;
+      font-size: 0.86rem;
+      line-height: 1.62;
+      color: var(--text-muted);
+    }
+
+    .practical-list > li + li {
+      margin-top: 0.55rem;
+    }
+
+    .practical-list strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .practical-block--alert .practical-list strong:first-child {
+      color: #a65c14;
+    }
+
+    .practical-list__note {
+      margin: 0.6rem 0 0;
+      padding-left: 0;
+      list-style: none;
+      font-size: 0.84rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* —— 页脚 —— */
+    .site-footer {
+      margin-top: 1rem;
+      padding: 2rem 1rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      background: linear-gradient(180deg, transparent, rgba(92, 184, 92, 0.06));
+      border-top: 1px solid rgba(74, 144, 226, 0.1);
+    }
+
+    .site-footer p {
+      margin: 0.35rem 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-title">1000元穷游北京</span>
+        <span class="logo-tagline">千元预算·玩转京城</span>
+      </a>
+      <button
+        type="button"
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-expanded="false"
+        aria-controls="main-nav"
+        aria-label="打开菜单"
+      >
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="主导航">
+        <ul class="nav-list">
+          <li><a href="index.html">首页</a></li>
+          <li><a href="pages/itinerary-4d.html" aria-current="page">精华行程</a></li>
+          <li><a href="pages/destinations.html">目的地</a></li>
+          <li><a href="pages/save-money.html">省钱秘籍</a></li>
+          <li><a href="pages/calculator.html">预算计算器</a></li>
+          <li class="nav-item nav-item--dropdown">
+            <button
+              type="button"
+              class="nav-dropdown__toggle"
+              id="nav-dropdown-guide"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-controls="nav-dropdown-guide-panel"
+            >
+              攻略
+              <span class="nav-dropdown__caret" aria-hidden="true">▾</span>
+            </button>
+            <ul class="nav-dropdown__panel" id="nav-dropdown-guide-panel" role="menu">
+              <li role="none">
+                <a role="menuitem" href="articles/beijing-subway-guide.html">北京地铁乘坐全攻略</a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="articles/student-discount.html">2026北京学生证优惠大全</a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="articles/summer-heat-tips.html">暑期防暑防晒指南</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <header class="subpage-lead" aria-labelledby="subpage-lead-title">
+      <h1 id="subpage-lead-title" class="subpage-lead__title">精华行程</h1>
+      <p class="subpage-lead__sub">三套节奏覆盖不同预算与体力，详情可同步自首页行程区。</p>
+    </header>
+    <section class="section subpage-body">
+      <div class="itinerary-page-list">
+        <article class="itinerary-page-version itinerary-detail-block" id="itin-3d2n-special">
+          <figure class="itinerary-page-cover">
+            <img
+              src="https://placehold.co/960x400/E8F4FD/4A90E2?text=3%E5%A4%A92%E5%A4%9C%E7%89%B9%E7%A7%8D%E5%85%B5"
+              alt="3天2夜特种兵行程封面占位图"
+              width="960"
+              height="400"
+              loading="lazy"
+            />
+          </figure>
+          <h2 class="itinerary-version-title" id="title-3d2n">3天2夜特种兵版</h2>
+          <p class="itinerary-detail-meta">极限打卡，主打一个来过 · 参考预算 ¥980</p>
+
+          <div class="itinerary-timeline">
+            <section class="itinerary-day" aria-labelledby="p3-d1">
+              <h4 id="p3-d1" class="itinerary-day__title">Day 1：中轴线暴走</h4>
+              <div class="timeline-item">
+                <div class="timeline-item__time">05:30</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">天安门广场看升旗</p>
+                  <p class="timeline-item__desc">免费，提前1天查好升旗时间</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">08:30</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">故宫博物院</p>
+                  <p class="timeline-item__desc">学生票20元，提前7天预约，游览约3.5小时</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">12:00</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">自带干粮午餐</p>
+                  <p class="timeline-item__desc">故宫餐厅外有休息长凳</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">14:00</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">景山公园</p>
+                  <p class="timeline-item__desc">门票2元，俯瞰故宫全景最佳机位</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">16:00</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">前门大街 / 大栅栏</p>
+                  <p class="timeline-item__desc">免费逛，忍住别买特产</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">晚上</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">南锣鼓巷 / 什刹海</p>
+                  <p class="timeline-item__desc">免费，看胡同夜色</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="itinerary-day" aria-labelledby="p3-d2">
+              <h4 id="p3-d2" class="itinerary-day__title">Day 2：长城之旅</h4>
+              <div class="timeline-item">
+                <div class="timeline-item__time">07:00</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">德胜门坐877路公交</p>
+                  <p class="timeline-item__desc">刷卡6元，约2.5小时直达八达岭</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">09:30</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">八达岭长城</p>
+                  <p class="timeline-item__desc">学生票20元，自带水，北线视野好</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">12:30</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">午餐</p>
+                  <p class="timeline-item__desc">建议自带干粮，景区餐饮偏贵</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">14:00</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">S2线火车回城</p>
+                  <p class="timeline-item__desc">感受京张铁路，到清河站转地铁</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">16:00</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">牛街吃小吃</p>
+                  <p class="timeline-item__desc">洪记牛肉包子3元/个，白记驴打滚15元/斤</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="itinerary-day" aria-labelledby="p3-d3">
+              <h4 id="p3-d3" class="itinerary-day__title">Day 3：皇家园林+返程</h4>
+              <div class="timeline-item">
+                <div class="timeline-item__time">06:30</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">颐和园</p>
+                  <p class="timeline-item__desc">学生票20元，新建宫门进，看清晨昆明湖</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">10:00</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">清华西门 / 北大东门</p>
+                  <p class="timeline-item__desc">打卡拍照</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">11:30</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">圆明园南门</p>
+                  <p class="timeline-item__desc">拍照，典型的到此一游点位</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">12:30</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">五道口大学城午餐</p>
+                  <p class="timeline-item__desc">枣糕王15元/斤，韩餐小店人均30</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">14:00</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">吴裕泰花茶冰淇淋、买伴手礼</p>
+                  <p class="timeline-item__desc">花茶冰淇淋9元，顺路选购伴手礼</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">16:00</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">前往火车站 / 机场</p>
+                  <p class="timeline-item__desc">结束旅程</p>
+                </div>
+              </div>
+            </section>
+
+            <aside class="itinerary-alert" aria-label="重要提示">
+              <h3 class="itinerary-alert__title">⚠️ 重要提示</h3>
+              <ul>
+                <li>故宫、国博需提前7天预约，清北需校内师生帮约</li>
+                <li>下载“亿通行”APP刷码乘地铁</li>
+                <li>学生证是一切优惠的前提，忘带等于亏大了</li>
+              </ul>
+            </aside>
+
+            <section class="itinerary-closing-stay" aria-labelledby="stay-3d2n">
+              <h3 id="stay-3d2n" class="itinerary-closing-stay__title">今晚住哪</h3>
+              <div class="itinerary-closing-stay__text">
+                <p><strong>第1晚：</strong>前门/大栅栏附近青旅，床位约80–100元，方便次日故宫与中轴线。</p>
+                <p><strong>第2晚：</strong>海淀/五道口附近青旅，约80元/床位，便于Day3一早进颐和园。</p>
+                <p><strong>第3晚：</strong>多为下午离京，一般无需住宿；若早班车或红眼航班，可考虑北京北站/清河站周边钟点房或快捷酒店过渡。</p>
+              </div>
+            </section>
+          </div>
+        </article>
+
+        <article class="itinerary-page-version itinerary-detail-block" id="itin-4d3n-classic">
+          <figure class="itinerary-page-cover">
+            <img
+              src="https://placehold.co/960x400/E8F8EF/5CB85C?text=4%E5%A4%A93%E6%99%9A%E7%BB%8F%E5%85%B8"
+              alt="4天3晚经典版行程封面占位图"
+              width="960"
+              height="400"
+              loading="lazy"
+            />
+          </figure>
+          <h2 class="itinerary-version-title" id="title-4d3n">4天3晚经典版</h2>
+          <p class="itinerary-detail-meta">劳逸结合，体验感最佳 · 参考预算 ¥1250 · 含2顿特色正餐额度</p>
+
+          <div class="itinerary-timeline">
+            <section class="itinerary-day" aria-labelledby="p4-d1">
+              <h4 id="p4-d1" class="itinerary-day__title">Day 1：抵京·天坛·前门</h4>
+              <div class="timeline-item">
+                <div class="timeline-item__time">10:00</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">抵达北京 · 酒店放包</p>
+                  <p class="timeline-item__desc">地铁直达住宿点，轻装出门</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">12:00</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">午餐：护国寺小吃 / 庆丰包子</p>
+                  <p class="timeline-item__desc">人均25–35元，清淡顶饱</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">14:30</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">天坛公园</p>
+                  <p class="timeline-item__desc">联票约34元（学生半价以现场为准），祈年殿打卡</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">17:30</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">前门大街 / 大栅栏散步</p>
+                  <p class="timeline-item__desc">免费逛，感受商业街氛围</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">晚间</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">特色正餐 ①：紫光园 / 四季民福（前门店需排队）</p>
+                  <p class="timeline-item__desc">扒肉条、烤鸭等，比大馆子亲民，预留人均约80–100元</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="itinerary-day" aria-labelledby="p4-d2">
+              <h4 id="p4-d2" class="itinerary-day__title">Day 2：中轴线精华</h4>
+              <div class="timeline-item">
+                <div class="timeline-item__time">可选</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">天安门升旗</p>
+                  <p class="timeline-item__desc">体力允许可去；不去则8:30直接故宫</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">08:30</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">故宫博物院</p>
+                  <p class="timeline-item__desc">学生票20元，提前7天预约，游览约4小时</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">13:00</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">景山公园</p>
+                  <p class="timeline-item__desc">门票2元，俯瞰紫禁城</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">15:30</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">北海公园（可选）</p>
+                  <p class="timeline-item__desc">学生票优惠以现场为准，湖边歇脚</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">傍晚</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">什刹海 / 银锭桥</p>
+                  <p class="timeline-item__desc">免费，慢节奏逛胡同与酒吧街外摆</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="itinerary-day" aria-labelledby="p4-d3">
+              <h4 id="p4-d3" class="itinerary-day__title">Day 3：长城专线</h4>
+              <div class="timeline-item">
+                <div class="timeline-item__time">07:30</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">德胜门877路 → 八达岭</p>
+                  <p class="timeline-item__desc">刷卡6元，留足往返时间</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">10:00</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">八达岭长城</p>
+                  <p class="timeline-item__desc">学生票20元，带水与防晒，比特种兵版稍晚出发更轻松</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">14:00</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">返程：S2线 / 877路</p>
+                  <p class="timeline-item__desc">按当日时刻表选择，避开极端高峰</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">17:00</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">牛街小吃</p>
+                  <p class="timeline-item__desc">洪记包子、白记年糕等，平价填肚</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="itinerary-day" aria-labelledby="p4-d4">
+              <h4 id="p4-d4" class="itinerary-day__title">Day 4：园林与国博·返程</h4>
+              <div class="timeline-item">
+                <div class="timeline-item__time">08:30</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">颐和园</p>
+                  <p class="timeline-item__desc">学生票20元，东宫门或新建宫门进，漫步约3小时</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">12:00</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">五道口午餐</p>
+                  <p class="timeline-item__desc">韩餐小店、枣糕王等，人均30元左右</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">14:00</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">国家博物馆</p>
+                  <p class="timeline-item__desc">免费需预约，冷气足，建议预留2.5–3小时</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">17:30</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">特色正餐 ②：簋街 / 北新桥卤煮（任选）</p>
+                  <p class="timeline-item__desc">体验京味夜宵文化，人均约60–90元</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-item__time">视车次</div>
+                <div class="timeline-item__content">
+                  <p class="timeline-item__title">前往火车站 / 机场</p>
+                  <p class="timeline-item__desc">建议买较晚车票，避免国博赶场太紧</p>
+                </div>
+              </div>
+            </section>
+
+            <aside class="itinerary-alert" aria-label="重要提示">
+              <h3 class="itinerary-alert__title">⚠️ 重要提示</h3>
+              <ul>
+                <li>故宫、国博务必提前预约；经典版在Day4安排国博，请算好闭馆时间</li>
+                <li>长城当日关注877路与S2线末班，别卡点</li>
+                <li>学生证、亿通行APP与充足充电宝，全程省心</li>
+              </ul>
+            </aside>
+
+            <section class="itinerary-closing-stay" aria-labelledby="stay-4d3n">
+              <h3 id="stay-4d3n" class="itinerary-closing-stay__title">今晚住哪</h3>
+              <div class="itinerary-closing-stay__text">
+                <p><strong>第1晚：</strong>前门/天桥/珠市口一带，青旅或快捷酒店约90–130元，连接天坛与前门夜景。</p>
+                <p><strong>第2晚：</strong>鼓楼/什刹海/南锣鼓巷外缘，便于夜游胡同，青旅约90–120元。</p>
+                <p><strong>第3晚：</strong>海淀/中关村/五道口，方便Day4颐和园+国博折返，床位约80–110元。</p>
+                <p><strong>第4晚：</strong>若车次在深夜或次日清晨，可订北京站/北京西站/大兴机场线沿线钟点房；当日离京则无需住宿。</p>
+              </div>
+            </section>
+          </div>
+        </article>
+      </div>
+    </section>
+    <aside class="subpage-endcap" aria-label="本章摘要">
+      <p class="subpage-endcap__title">精华行程</p>
+      <p class="subpage-endcap__sub">三套节奏覆盖不同预算与体力，详情可同步自首页行程区。</p>
+    </aside>
+  </main>
+  <footer class="site-footer">
+    <p>© 2026 1000元穷游北京 · 千元预算·玩转京城</p>
+    <p>本站所有景点票价、开放时间、预约政策等信息仅供参考，出行前请以景区、交通部门官方实时公布为准。</p>
+    <p><a href="privacy.html">隐私政策</a> · ICP备XXXXXXXX号-X · 📧 mr.yanbo@qq.com</p>
+  </footer>
+  <script>
+    (function () {
+      var downloadBtn = document.getElementById("hero-download-btn");
+      if (downloadBtn) {
+        downloadBtn.addEventListener("click", function () {
+          alert("攻略整理中，即将上线！");
+        });
+      }
+
+      var budgetBtn = document.getElementById("budget-calc-btn");
+      var budgetOut = document.getElementById("budget-calc-output");
+      var budgetTotalEl = document.getElementById("budget-calc-total");
+      var budgetVerdictEl = document.getElementById("budget-calc-verdict");
+      if (budgetBtn && budgetOut && budgetTotalEl && budgetVerdictEl) {
+        var budgetInputIds = [
+          "budget-transport",
+          "budget-lodging",
+          "budget-meals",
+          "budget-tickets",
+          "budget-buffer",
+        ];
+        budgetBtn.addEventListener("click", function () {
+          var sum = 0;
+          for (var i = 0; i < budgetInputIds.length; i++) {
+            var inp = document.getElementById(budgetInputIds[i]);
+            if (!inp) continue;
+            var v = parseFloat(inp.value);
+            sum += isNaN(v) ? 0 : v;
+          }
+          var total = Math.round(sum);
+          budgetTotalEl.textContent = "总金额：¥" + total;
+          budgetVerdictEl.classList.remove("budget-sheet__verdict--ok", "budget-sheet__verdict--over");
+          if (total <= 1000) {
+            budgetVerdictEl.textContent = "✅ 恭喜！预算过关，放心出发！";
+            budgetVerdictEl.classList.add("budget-sheet__verdict--ok");
+          } else {
+            var over = total - 1000;
+            budgetVerdictEl.textContent =
+              "⚠️ 超了" + over + "元，试试减少备用金或自带干粮";
+            budgetVerdictEl.classList.add("budget-sheet__verdict--over");
+          }
+          budgetOut.classList.remove("is-empty");
+        });
+      }
+
+      var header = document.getElementById("site-header");
+      var toggle = document.getElementById("nav-toggle");
+      var nav = document.getElementById("main-nav");
+
+      function setMenuOpen(open) {
+        header.classList.toggle("is-open", open);
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        toggle.setAttribute("aria-label", open ? "关闭菜单" : "打开菜单");
+      }
+
+      function closeMenu() {
+        setMenuOpen(false);
+      }
+
+      function closeAllDropdowns() {
+        document.querySelectorAll(".nav-item--dropdown.is-open").forEach(function (wrap) {
+          wrap.classList.remove("is-open");
+          var t = wrap.querySelector(".nav-dropdown__toggle");
+          if (t) t.setAttribute("aria-expanded", "false");
+        });
+      }
+
+      if (toggle && header) {
+        toggle.addEventListener("click", function () {
+          setMenuOpen(!header.classList.contains("is-open"));
+        });
+      }
+
+      document.querySelectorAll(".nav-dropdown__toggle").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var li = btn.closest(".nav-item--dropdown");
+          if (!li) return;
+          var willOpen = !li.classList.contains("is-open");
+          closeAllDropdowns();
+          if (willOpen) {
+            li.classList.add("is-open");
+            btn.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+
+      function scrollToHash(hash) {
+        if (!hash || hash === "#") return;
+        var el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      document.addEventListener("click", function (e) {
+        if (!e.target.closest(".nav-item--dropdown")) {
+          closeAllDropdowns();
+        }
+
+        var scrollLink = e.target.closest("[data-scroll]");
+        if (scrollLink && scrollLink.getAttribute("href")) {
+          var href = scrollLink.getAttribute("href");
+          if (href.indexOf("#") === 0) {
+            e.preventDefault();
+            scrollToHash(href);
+            closeMenu();
+            closeAllDropdowns();
+          }
+        }
+
+        var btn = e.target.closest("[data-scroll-to]");
+        if (btn) {
+          var to = btn.getAttribute("data-scroll-to");
+          if (to) {
+            e.preventDefault();
+            scrollToHash(to);
+            closeMenu();
+            closeAllDropdowns();
+          }
+        }
+
+        if (window.innerWidth < 768 && nav && toggle && !nav.contains(e.target) && !toggle.contains(e.target)) {
+          closeMenu();
+        }
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeAllDropdowns();
+          closeMenu();
+        }
+      });
+
+      window.addEventListener("resize", function () {
+        if (window.innerWidth >= 768) {
+          closeMenu();
+          closeAllDropdowns();
+        }
+      });
+
+      /* 手风琴：按内容高度展开 */
+      var acc = document.getElementById("tips-accordion");
+      if (acc) {
+        acc.querySelectorAll(".accordion-item").forEach(function (item) {
+          var trigger = item.querySelector(".accordion-trigger");
+          var panel = item.querySelector(".accordion-panel");
+          var inner = panel ? panel.querySelector(".accordion-panel-inner") : null;
+          if (!trigger || !panel || !inner) return;
+
+          function applyHeight() {
+            if (item.classList.contains("is-open")) {
+              panel.style.maxHeight = inner.scrollHeight + "px";
+            } else {
+              panel.style.maxHeight = "0px";
+            }
+          }
+
+          trigger.addEventListener("click", function () {
+            var open = item.classList.toggle("is-open");
+            trigger.setAttribute("aria-expanded", open ? "true" : "false");
+            applyHeight();
+          });
+
+          window.addEventListener("resize", applyHeight);
+          applyHeight();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

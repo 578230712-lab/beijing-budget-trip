@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="目的地指南——精选北京高性价比景点，支持关键词搜索与多标签筛选，学生党友好。" />
+  <title>目的地指南 | 1000元穷游北京</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="logo" href="../index.html">
+        <span class="logo__mark" aria-hidden="true">🎒</span>
+        <span class="logo__text">
+          <span class="logo__title">1000元穷游北京</span>
+          <span class="logo__tagline">千元预算·玩转京城</span>
+        </span>
+      </a>
+      <button
+        type="button"
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-expanded="false"
+        aria-controls="main-nav"
+        aria-label="打开菜单"
+      >
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="主导航">
+        <ul class="nav-list">
+          <li><a href="../index.html">首页</a></li>
+          <li><a href="itinerary-4d.html">行程</a></li>
+          <li><a href="destinations.html" aria-current="page">目的地</a></li>
+          <li><a href="save-money.html">省钱秘籍</a></li>
+          <li><a href="calculator.html">预算计算器</a></li>
+          <li class="nav-item nav-item--dropdown">
+            <button
+              type="button"
+              class="nav-dropdown__toggle"
+              id="nav-dropdown-guide"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-controls="nav-dropdown-guide-panel"
+            >
+              攻略
+              <span class="nav-dropdown__caret" aria-hidden="true">▾</span>
+            </button>
+            <ul class="nav-dropdown__panel" id="nav-dropdown-guide-panel" role="menu">
+              <li role="none">
+                <a role="menuitem" href="../articles/beijing-subway-guide.html">北京地铁乘坐全攻略</a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="../articles/student-discount.html">2026北京学生证优惠大全</a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="../articles/summer-heat-tips.html">暑期防暑防晒指南</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="page-content" class="container container--subpage">
+    <header class="subpage-lead">
+      <h1 class="subpage-lead__title">目的地指南</h1>
+      <p class="subpage-lead__sub">精选北京高性价比景点，学生党友好</p>
+    </header>
+
+    <div class="dest-toolbar">
+      <label class="dest-search">
+        <span class="visually-hidden">搜索景点名称或关键词</span>
+        <input
+          type="search"
+          class="dest-search__input"
+          data-dest-search
+          placeholder="搜索景点名称或关键词..."
+          autocomplete="off"
+          enterkeyhint="search"
+        />
+      </label>
+
+      <div
+        class="dest-filter-bar"
+        data-dest-filter-bar
+        role="toolbar"
+        aria-label="按分类筛选景点，可多选"
+      >
+        <button
+          type="button"
+          class="dest-filter-bar__btn is-active"
+          data-dest-filter="all"
+          aria-pressed="true"
+        >
+          全部
+        </button>
+        <button type="button" class="dest-filter-bar__btn" data-dest-filter="免费" aria-pressed="false">
+          免费
+        </button>
+        <button type="button" class="dest-filter-bar__btn" data-dest-filter="学生票" aria-pressed="false">
+          学生票
+        </button>
+        <button type="button" class="dest-filter-bar__btn" data-dest-filter="必去" aria-pressed="false">
+          必去
+        </button>
+        <button type="button" class="dest-filter-bar__btn" data-dest-filter="皇家园林" aria-pressed="false">
+          皇家园林
+        </button>
+        <button type="button" class="dest-filter-bar__btn" data-dest-filter="胡同文艺" aria-pressed="false">
+          胡同文艺
+        </button>
+        <button type="button" class="dest-filter-bar__btn" data-dest-filter="博物馆" aria-pressed="false">
+          博物馆
+        </button>
+        <button type="button" class="dest-filter-bar__btn" data-dest-filter="现代地标" aria-pressed="false">
+          现代地标
+        </button>
+      </div>
+    </div>
+
+    <p class="dest-empty" data-dest-empty hidden>😔 没有找到匹配的景点，试试其他关键词吧~</p>
+
+    <div class="dest-grid" id="dest-grid" aria-live="polite">
+      <article
+        class="dest-card"
+        data-dest-card
+        data-tags="必去 学生票"
+        data-search="故宫博物院 故宫 紫禁城 中轴线 午门 神武门 预约 国宝"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/gugong.jpg" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title"><a href="destination-gugong.html">故宫博物院</a></h3>
+          <p class="dest-card__price">学生 ¥20</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--category">必去</span></li>
+            <li><span class="dest-tag dest-tag--student">学生票</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：上午</p>
+          <p class="dest-card__lead">中轴线核心，不看故宫等于没来北京。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：提前7天公众号预约，游览约3.5小时。</p>
+        </div>
+      </article>
+
+      <article
+        class="dest-card"
+        data-dest-card
+        data-tags="学生票 皇家园林"
+        data-search="颐和园 昆明湖 佛香阁 新建宫门 东宫门 皇家园林 性价比之王"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/yiheyuan.jpg" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title"><a href="destination-yiheyuan.html">颐和园</a></h3>
+          <p class="dest-card__price">学生 ¥20</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--student">学生票</span></li>
+            <li><span class="dest-tag dest-tag--category">皇家园林</span></li>
+            <li><span class="dest-tag dest-tag--value">性价比之王</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：清晨</p>
+          <p class="dest-card__lead">皇家园林博物馆，昆明湖边吹风太惬意。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：新建宫门进，逛到东宫门出，不走回头路。</p>
+          <p class="dest-card__more"><a href="destination-yiheyuan.html">查看详情</a></p>
+        </div>
+      </article>
+
+      <article
+        class="dest-card"
+        data-dest-card
+        data-tags="学生票 必去"
+        data-search="八达岭长城 长城 好汉坡 德胜门 877 公交 S2"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/badaling.jpg" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='../images/changcheng.jpg'" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title"><a href="destination-badaling.html">八达岭长城</a></h3>
+          <p class="dest-card__price">学生 ¥20</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--student">学生票</span></li>
+            <li><span class="dest-tag dest-tag--category">必去</span></li>
+            <li><span class="dest-tag dest-tag--tired">累但值</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：上午</p>
+          <p class="dest-card__lead">不到长城非好汉，带足水，穿舒服的鞋。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：德胜门877路公交直达，刷卡仅6元。</p>
+          <p class="dest-card__more"><a href="destination-badaling.html">查看详情</a></p>
+        </div>
+      </article>
+
+      <article
+        class="dest-card"
+        data-dest-card
+        data-tags="学生票 必去"
+        data-search="天坛公园 天坛 祈年殿 祭天 冰淇淋 回音壁"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/tiantan.jpg" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title"><a href="destination-tiantan.html">天坛公园</a></h3>
+          <p class="dest-card__price">学生 ¥17</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--student">学生票</span></li>
+            <li><span class="dest-tag dest-tag--category">必去</span></li>
+            <li><span class="dest-tag dest-tag--photo">拍照神器</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：上午</p>
+          <p class="dest-card__lead">祈年殿太出片了，古代祭天圣地。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：祈年殿造型冰淇淋约20元，拍照神器。</p>
+          <p class="dest-card__more"><a href="destination-tiantan.html">查看详情</a></p>
+        </div>
+      </article>
+
+      <article
+        id="dest-yuanmingyuan"
+        class="dest-card"
+        data-dest-card
+        data-tags="学生票 皇家园林"
+        data-search="圆明园 西洋楼 遗址 荷花 藻园门 万园之园 历史"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/yuanmingyuan.jpg" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title"><a href="destination-yuanmingyuan.html">圆明园</a></h3>
+          <p class="dest-card__price">学生 ¥10</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--student">学生票</span></li>
+            <li><span class="dest-tag dest-tag--category">皇家园林</span></li>
+            <li><span class="dest-tag dest-tag--first">历史见证</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：上午</p>
+          <p class="dest-card__lead">百年沧桑，西洋楼遗址区是核心。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：夏天荷花很美，从藻园门进最近。</p>
+          <p class="dest-card__more"><a href="destination-yuanmingyuan.html">查看详情</a></p>
+        </div>
+      </article>
+
+      <article
+        id="dest-qinghua"
+        class="dest-card"
+        data-dest-card
+        data-tags="免费 现代地标"
+        data-search="清华大学 清华园 圆明园站 五道口 西门 打卡"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/qinghuadaxue.jpg" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title">清华大学（西门打卡）</h3>
+          <p class="dest-card__price">免费</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--free">免费</span></li>
+            <li><span class="dest-tag dest-tag--category">现代地标</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：下午</p>
+          <p class="dest-card__lead">颐和园地铁约1站可达，校园参观规则以校方当日规定为准，常见为西门一带外观打卡。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：与圆明园、颐和园可安排同一天，注意预约与交通接驳。</p>
+        </div>
+      </article>
+
+      <article
+        class="dest-card"
+        data-dest-card
+        data-tags="学生票 皇家园林"
+        data-search="北海公园 北海 白塔 划船 让我们荡起双桨 琼岛"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/beihaigongyuan.jpg" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title">北海公园</h3>
+          <p class="dest-card__price">学生 ¥10</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--student">学生票</span></li>
+            <li><span class="dest-tag dest-tag--category">皇家园林</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：下午</p>
+          <p class="dest-card__lead">白塔倒影在湖面上，让我们荡起双桨。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：划船额外收费，风大时停运，提前看天气。</p>
+        </div>
+      </article>
+
+      <article
+        class="dest-card"
+        data-dest-card
+        data-tags="免费 必去"
+        data-search="景山公园 景山 万春亭 故宫全景 神武门 2元"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/jingshangongyuan.jpg" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title">景山公园</h3>
+          <p class="dest-card__price">¥2</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--free">免费</span></li>
+            <li><span class="dest-tag dest-tag--category">必去</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：傍晚</p>
+          <p class="dest-card__lead">2块钱看故宫全景，全北京最值的门票。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：出故宫神武门过马路就到，登山约20分钟。</p>
+        </div>
+      </article>
+
+      <article
+        id="dest-798"
+        class="dest-card"
+        data-dest-card
+        data-tags="免费 胡同文艺 出片神地"
+        data-search="798艺术区 798 画廊 工业风 特展 望京 UCCA 尤伦斯 火车头"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/798.jpg" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title"><a href="destination-798.html">798艺术区</a></h3>
+          <p class="dest-card__price">免费</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--free">免费</span></li>
+            <li><span class="dest-tag dest-tag--category">胡同文艺</span></li>
+            <li><span class="dest-tag dest-tag--photo">出片神地</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：下午</p>
+          <p class="dest-card__lead">工厂改造的艺术区，随便一面墙都是背景板。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：园区较大建议穿舒适的鞋，画廊免费特展单独收费。</p>
+          <p class="dest-card__more"><a href="destination-798.html">查看详情</a></p>
+        </div>
+      </article>
+
+      <article
+        id="dest-shichahai"
+        class="dest-card"
+        data-dest-card
+        data-tags="免费 胡同文艺 夜晚限定"
+        data-search="什刹海 后海 银锭桥 酒吧 胡同 日落 烟袋斜街 前海"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/hougai.jpg" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title"><a href="destination-shichahai.html">什刹海/后海</a></h3>
+          <p class="dest-card__price">免费</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--free">免费</span></li>
+            <li><span class="dest-tag dest-tag--category">胡同文艺</span></li>
+            <li><span class="dest-tag dest-tag--night">夜晚限定</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：傍晚到晚上</p>
+          <p class="dest-card__lead">在银锭桥上看日落，老北京最浪漫的事。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：酒吧消费高，光在湖边走走就很好。</p>
+          <p class="dest-card__more"><a href="destination-shichahai.html">查看详情</a></p>
+        </div>
+      </article>
+
+      <article
+        id="dest-nanluo"
+        class="dest-card"
+        data-dest-card
+        data-tags="免费 胡同文艺 初次必去"
+        data-search="南锣鼓巷 南锣 胡同 主街 支巷 帽儿胡同 雨儿胡同 菊儿胡同"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/nanluoguxiang.jpg" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title"><a href="destination-nanluoguxiang.html">南锣鼓巷</a></h3>
+          <p class="dest-card__price">免费</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--free">免费</span></li>
+            <li><span class="dest-tag dest-tag--category">胡同文艺</span></li>
+            <li><span class="dest-tag dest-tag--first">初次必去</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：下午到晚上</p>
+          <p class="dest-card__lead">北京最著名的胡同，老北京与新潮流的碰撞。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：主街商业化程度高，拐进两侧小胡同才是真味道。</p>
+          <p class="dest-card__more"><a href="destination-nanluoguxiang.html">查看详情</a></p>
+        </div>
+      </article>
+
+      <article
+        class="dest-card"
+        data-dest-card
+        data-tags="免费 博物馆 必去"
+        data-search="国家博物馆 国博 古代中国 国宝 预约 冷气"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/guojiabowuguan.jpg" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title"><a href="destination-guojiabowuguan.html">国家博物馆</a></h3>
+          <p class="dest-card__price">免费（需预约）</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--free">免费</span></li>
+            <li><span class="dest-tag dest-tag--category">博物馆</span></li>
+            <li><span class="dest-tag dest-tag--category">必去</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：下午</p>
+          <p class="dest-card__lead">地下一层古代中国展厅，国宝多到看不过来。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：冷气很足，带件薄外套，提前预约。</p>
+          <p class="dest-card__more"><a href="destination-guojiabowuguan.html">查看详情</a></p>
+        </div>
+      </article>
+
+      <article
+        id="dest-oly-park"
+        class="dest-card"
+        data-dest-card
+        data-tags="免费 现代地标"
+        data-search="奥林匹克公园 奥园 鸟巢 水立方 夜景 亮灯 国家体育馆"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/aolinpikegongyuan.jpeg" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title"><a href="destination-aolinpikegongyuan.html">奥林匹克公园</a></h3>
+          <p class="dest-card__price">免费</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--free">免费</span></li>
+            <li><span class="dest-tag dest-tag--category">现代地标</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：傍晚到晚上</p>
+          <p class="dest-card__lead">鸟巢水立方夜景比白天好看十倍。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：外面拍照免费，无需买票进场。</p>
+          <p class="dest-card__more"><a href="destination-aolinpikegongyuan.html">查看详情</a></p>
+        </div>
+      </article>
+
+      <article
+        class="dest-card"
+        data-dest-card
+        data-tags="免费 现代地标"
+        data-search="三里屯太古里 三里屯 潮人 潮流 酒吧 汉堡"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/taiguli.jpeg" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title"><a href="destination-taiguli.html">三里屯太古里</a></h3>
+          <p class="dest-card__price">免费</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--free">免费</span></li>
+            <li><span class="dest-tag dest-tag--category">现代地标</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：下午到晚上</p>
+          <p class="dest-card__lead">北京潮流风向标，看各色潮人。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：消费偏高，只逛不买也是一种乐趣。</p>
+          <p class="dest-card__more"><a href="destination-taiguli.html">查看详情</a></p>
+        </div>
+      </article>
+
+      <article
+        class="dest-card"
+        data-dest-card
+        data-tags="免费 现代地标"
+        data-search="国贸 CBD 央视大楼 大裤衩 天际线 夜景 观景"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/CBD.jpg" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title"><a href="destination-CBD.html">国贸CBD/央视大楼</a></h3>
+          <p class="dest-card__price">免费</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--free">免费</span></li>
+            <li><span class="dest-tag dest-tag--category">现代地标</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：傍晚</p>
+          <p class="dest-card__lead">「大裤衩」楼下仰拍，是北京最魔幻的天际线。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：国贸三期高层有免费观景位，夜景绝美。</p>
+          <p class="dest-card__more"><a href="destination-CBD.html">查看详情</a></p>
+        </div>
+      </article>
+
+      <article
+        class="dest-card"
+        data-dest-card
+        data-tags="学生票 胡同文艺"
+        data-search="雍和宫 藏传佛教 香火 赠香 礼佛"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/yonghegong.jpg" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title"><a href="destination-yonghegong.html">雍和宫</a></h3>
+          <p class="dest-card__price">学生 ¥12</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--student">学生票</span></li>
+            <li><span class="dest-tag dest-tag--category">胡同文艺</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：上午</p>
+          <p class="dest-card__lead">北京最大的藏传佛教寺院，香火极旺。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：赠香处可免费领香，不用在门口买。</p>
+          <p class="dest-card__more"><a href="destination-yonghegong.html">查看详情</a></p>
+        </div>
+      </article>
+
+      <article
+        id="dest-gongwangfu"
+        class="dest-card"
+        data-dest-card
+        data-tags="学生票 必去"
+        data-search="恭王府 和珅 福字碑 园林 什刹海"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/gongwangfu.jpg" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title"><a href="destination-gongwangfu.html">恭王府</a></h3>
+          <p class="dest-card__price">学生 ¥20</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--student">学生票</span></li>
+            <li><span class="dest-tag dest-tag--category">必去</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：上午</p>
+          <p class="dest-card__lead">和珅的家，后半部分是古典园林精品。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：摸一下康熙御笔「福」字碑沾沾福气。</p>
+          <p class="dest-card__more"><a href="destination-gongwangfu.html">查看详情</a></p>
+        </div>
+      </article>
+
+      <article
+        class="dest-card"
+        data-dest-card
+        data-tags="免费 必去"
+        data-search="天安门广场 天安门 升旗 安检 仪式"
+      >
+        <div class="dest-card__media">
+          <img class="dest-card__thumb" src="../images/tiananmen.jpg" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="dest-card__body">
+          <h3 class="dest-card__title"><a href="destination-tiananmen.html">天安门广场</a></h3>
+          <p class="dest-card__price">免费</p>
+          <ul class="dest-card__tags" aria-label="分类标签">
+            <li><span class="dest-tag dest-tag--free">免费</span></li>
+            <li><span class="dest-tag dest-tag--category">必去</span></li>
+          </ul>
+          <p class="dest-card__slot"><strong>适合时段</strong>：清晨</p>
+          <p class="dest-card__lead">看升旗是刻在中国人DNA里的仪式感。</p>
+          <p class="dest-card__tip"><strong>小贴士</strong>：务必提前1天查好升旗时间，建议提前1小时到。</p>
+          <p class="dest-card__more"><a href="destination-tiananmen.html">查看详情</a></p>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 1000元穷游北京 · 千元预算·玩转京城</p>
+    <p><a href="../privacy.html">隐私政策</a></p>
+    <p>ICP备XXXXXXXX号-X</p>
+    <p>📧 mr.yanbo@qq.com</p>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
